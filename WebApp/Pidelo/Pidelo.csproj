@@ -45,6 +45,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +62,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,10 +140,43 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TipoDocumentoController.cs" />
+    <Compile Include="Controllers\ZonaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelPidelo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPidelo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelPidelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPidelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelPidelo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPidelo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblCliente.cs">
+      <DependentUpon>ModelPidelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblClienteMetaData.cs" />
+    <Compile Include="Models\tblTipoDocumento.cs">
+      <DependentUpon>ModelPidelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTipoDocumentoMetaData.cs" />
+    <Compile Include="Models\tblUsuario.cs">
+      <DependentUpon>ModelPidelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblZona.cs">
+      <DependentUpon>ModelPidelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblZonaMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -510,6 +553,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ModelPidelo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPidelo.edmx</DependentUpon>
+      <LastGenOutput>ModelPidelo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelPidelo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPidelo.edmx</DependentUpon>
+      <LastGenOutput>ModelPidelo.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -531,6 +584,13 @@
     <Content Include="Content\plugins\weather-icons\fonts\weathericons-regular-webfont.eot" />
     <Content Include="Content\plugins\weather-icons\fonts\weathericons-regular-webfont.ttf" />
     <Content Include="Content\plugins\weather-icons\fonts\weathericons-regular-webfont.woff" />
+    <EntityDeploy Include="Models\ModelPidelo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelPidelo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelPidelo.edmx.diagram">
+      <DependentUpon>ModelPidelo.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\charts-c3.js" />
@@ -604,10 +664,24 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Zona\Create.cshtml" />
+    <Content Include="Views\Zona\Delete.cshtml" />
+    <Content Include="Views\Zona\Details.cshtml" />
+    <Content Include="Views\Zona\Edit.cshtml" />
+    <Content Include="Views\Zona\Index.cshtml" />
+    <Content Include="Views\TipoDocumento\Create.cshtml" />
+    <Content Include="Views\TipoDocumento\Delete.cshtml" />
+    <Content Include="Views\TipoDocumento\Details.cshtml" />
+    <Content Include="Views\TipoDocumento\Edit.cshtml" />
+    <Content Include="Views\TipoDocumento\Index.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -615,6 +689,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

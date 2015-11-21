@@ -69,13 +69,13 @@
         <div class="page-header full-content">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>Blank Page <small>short description</small></h1>
+                    <h1>@ViewBag.Pagina <small>@ViewBag.DescCorta</small></h1>
                 </div><!--.col-->
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="ion-home"></i></a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li><a href="#" class="active">Blank Page</a></li>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="@(ViewBag.Controlador)/@(ViewBag.Accion)" class="active">@ViewBag.Pagina</a></li>
                     </ol>
                 </div><!--.col-->
             </div><!--.row-->
