@@ -82,7 +82,7 @@
           </Key>
           <Property Name="idTipoDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblCliente" Relationship="Self.tblCliente_tblTipoDocumento" FromRole="tblTipoDocumento" ToRole="tblCliente" />
+          <NavigationProperty Name="tblClientes" Relationship="Self.tblCliente_tblTipoDocumento" FromRole="tblTipoDocumento" ToRole="tblCliente" />
         </EntityType>
         <EntityType Name="tblUsuario">
           <Key>
@@ -112,14 +112,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="pidelodbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblCliente" EntityType="Self.tblCliente" />
-          <EntitySet Name="tblTipoDocumento" EntityType="Self.tblTipoDocumento" />
-          <EntitySet Name="tblUsuario" EntityType="Self.tblUsuario" />
-          <EntitySet Name="tblZona" EntityType="Self.tblZona" />
+        <EntityContainer Name="pidelodbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblClientes" EntityType="Self.tblCliente" />
+          <EntitySet Name="tblTipoDocumentoes" EntityType="Self.tblTipoDocumento" />
+          <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuario" />
+          <EntitySet Name="tblZonas" EntityType="Self.tblZona" />
           <AssociationSet Name="tblCliente_tblTipoDocumento" Association="Self.tblCliente_tblTipoDocumento">
-            <End Role="tblTipoDocumento" EntitySet="tblTipoDocumento" />
-            <End Role="tblCliente" EntitySet="tblCliente" />
+            <End Role="tblTipoDocumento" EntitySet="tblTipoDocumentoes" />
+            <End Role="tblCliente" EntitySet="tblClientes" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -127,8 +127,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="pidelodbModelStoreContainer" CdmEntityContainer="pidelodbEntities">
-          <EntitySetMapping Name="tblCliente">
+        <EntityContainerMapping StorageEntityContainer="pidelodbModelStoreContainer" CdmEntityContainer="pidelodbEntities1">
+          <EntitySetMapping Name="tblClientes">
             <EntityTypeMapping TypeName="pidelodbModel.tblCliente">
               <MappingFragment StoreEntitySet="tblCliente">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
@@ -139,7 +139,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblTipoDocumento">
+          <EntitySetMapping Name="tblTipoDocumentoes">
             <EntityTypeMapping TypeName="pidelodbModel.tblTipoDocumento">
               <MappingFragment StoreEntitySet="tblTipoDocumento">
                 <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
@@ -147,7 +147,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblUsuario">
+          <EntitySetMapping Name="tblUsuarios">
             <EntityTypeMapping TypeName="pidelodbModel.tblUsuario">
               <MappingFragment StoreEntitySet="tblUsuario">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
@@ -157,7 +157,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblZona">
+          <EntitySetMapping Name="tblZonas">
             <EntityTypeMapping TypeName="pidelodbModel.tblZona">
               <MappingFragment StoreEntitySet="tblZona">
                 <ScalarProperty Name="idZona" ColumnName="idZona" />
@@ -179,7 +179,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

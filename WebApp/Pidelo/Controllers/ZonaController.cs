@@ -12,12 +12,12 @@ namespace Pidelo.Controllers
 {
     public class ZonaController : Controller
     {
-        private pidelodbEntities db = new pidelodbEntities();
+        private pidelodbEntities1 db = new pidelodbEntities1();
 
         // GET: Zona
         public ActionResult Index()
         {
-            return View(db.tblZona.ToList());
+            return View(db.tblZonas.ToList());
         }
 
         // GET: Zona/Details/5
@@ -27,7 +27,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblZona tblZona = db.tblZona.Find(id);
+            tblZona tblZona = db.tblZonas.Find(id);
             if (tblZona == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Pidelo.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.tblZona.Add(tblZona);
+                db.tblZonas.Add(tblZona);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblZona tblZona = db.tblZona.Find(id);
+            tblZona tblZona = db.tblZonas.Find(id);
             if (tblZona == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblZona tblZona = db.tblZona.Find(id);
+            tblZona tblZona = db.tblZonas.Find(id);
             if (tblZona == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Pidelo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tblZona tblZona = db.tblZona.Find(id);
-            db.tblZona.Remove(tblZona);
+            tblZona tblZona = db.tblZonas.Find(id);
+            db.tblZonas.Remove(tblZona);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

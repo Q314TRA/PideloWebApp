@@ -14,16 +14,14 @@ namespace Pidelo.Models
     
     public partial class tblTipoDocumento
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblTipoDocumento()
         {
-            this.tblCliente = new HashSet<tblCliente>();
+            this.tblClientes = new HashSet<tblCliente>();
         }
     
         public int idTipoDocumento { get; set; }
         public string nombre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCliente> tblCliente { get; set; }
+        public virtual ICollection<tblCliente> tblClientes { get; set; }
     }
 }

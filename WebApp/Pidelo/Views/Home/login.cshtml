@@ -1,0 +1,53 @@
+﻿@model Pidelo.Models.tblUsuario
+
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(false);
+
+                                  if (@ViewBag.Message != null)
+                                  {
+                                    <div>
+                                        @ViewBag.Message
+                                    </div>
+                                  }
+
+
+                                <div class="container">
+                                    <div class="row">
+                                        <h2>
+                                            login
+                                        </h2>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(a => a.usuario)
+                                                @Html.TextBoxFor(a => a.usuario, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(a => a.usuario)
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(a => a.contrasenia)
+                                                @Html.PasswordFor(a => a.contrasenia, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(a => a.contrasenia)
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" value="Login" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+}
+
+
+

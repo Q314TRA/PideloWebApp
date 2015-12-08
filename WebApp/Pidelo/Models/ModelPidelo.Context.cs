@@ -13,10 +13,10 @@ namespace Pidelo.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class pidelodbEntities : DbContext
+    public partial class pidelodbEntities1 : DbContext
     {
-        public pidelodbEntities()
-            : base("name=pidelodbEntities")
+        public pidelodbEntities1()
+            : base("name=pidelodbEntities1")
         {
         }
     
@@ -25,9 +25,9 @@ namespace Pidelo.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblCliente> tblCliente { get; set; }
-        public virtual DbSet<tblTipoDocumento> tblTipoDocumento { get; set; }
-        public virtual DbSet<tblUsuario> tblUsuario { get; set; }
-        public virtual DbSet<tblZona> tblZona { get; set; }
+        public virtual DbSet<tblCliente> tblClientes { get; set; }
+        public virtual DbSet<tblTipoDocumento> tblTipoDocumentoes { get; set; }
+        public virtual DbSet<tblUsuario> tblUsuarios { get; set; }
+        public virtual DbSet<tblZona> tblZonas { get; set; }
     }
 }

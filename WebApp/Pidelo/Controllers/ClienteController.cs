@@ -12,12 +12,12 @@ namespace Pidelo.Controllers
 {
     public class ClienteController : Controller
     {
-        private pidelodbEntities db = new pidelodbEntities();
+        private pidelodbEntities1 db = new pidelodbEntities1();
 
         // GET: Cliente
         public ActionResult Index()
         {
-            var tblCliente = db.tblCliente.Include(t => t.tblTipoDocumento);
+            var tblCliente = db.tblClientes.Include(t => t.tblTipoDocumento);
             return View(tblCliente.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblCliente tblCliente = db.tblCliente.Find(id);
+            tblCliente tblCliente = db.tblClientes.Find(id);
             if (tblCliente == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace Pidelo.Controllers
         // GET: Cliente/Create
         public ActionResult Create()
         {
-            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumento, "idTipoDocumento", "nombre");
+            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumentoes, "idTipoDocumento", "nombre");
             return View();
         }
 
@@ -52,12 +52,12 @@ namespace Pidelo.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.tblCliente.Add(tblCliente);
+                db.tblClientes.Add(tblCliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumento, "idTipoDocumento", "nombre", tblCliente.idTipoDocumento);
+            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumentoes, "idTipoDocumento", "nombre", tblCliente.idTipoDocumento);
             return View(tblCliente);
         }
 
@@ -68,12 +68,12 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblCliente tblCliente = db.tblCliente.Find(id);
+            tblCliente tblCliente = db.tblClientes.Find(id);
             if (tblCliente == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumento, "idTipoDocumento", "nombre", tblCliente.idTipoDocumento);
+            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumentoes, "idTipoDocumento", "nombre", tblCliente.idTipoDocumento);
             return View(tblCliente);
         }
 
@@ -90,7 +90,7 @@ namespace Pidelo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumento, "idTipoDocumento", "nombre", tblCliente.idTipoDocumento);
+            ViewBag.idTipoDocumento = new SelectList(db.tblTipoDocumentoes, "idTipoDocumento", "nombre", tblCliente.idTipoDocumento);
             return View(tblCliente);
         }
 
@@ -101,7 +101,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblCliente tblCliente = db.tblCliente.Find(id);
+            tblCliente tblCliente = db.tblClientes.Find(id);
             if (tblCliente == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace Pidelo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tblCliente tblCliente = db.tblCliente.Find(id);
-            db.tblCliente.Remove(tblCliente);
+            tblCliente tblCliente = db.tblClientes.Find(id);
+            db.tblClientes.Remove(tblCliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

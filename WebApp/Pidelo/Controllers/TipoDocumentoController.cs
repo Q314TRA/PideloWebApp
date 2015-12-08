@@ -12,12 +12,12 @@ namespace Pidelo.Controllers
 {
     public class TipoDocumentoController : Controller
     {
-        private pidelodbEntities db = new pidelodbEntities();
+        private pidelodbEntities1 db = new pidelodbEntities1();
 
         // GET: TipoDocumento
         public ActionResult Index()
         {
-            return View(db.tblTipoDocumento.ToList());
+            return View(db.tblTipoDocumentoes.ToList());
         }
 
         // GET: TipoDocumento/Details/5
@@ -27,7 +27,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumento.Find(id);
+            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumentoes.Find(id);
             if (tblTipoDocumento == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Pidelo.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.tblTipoDocumento.Add(tblTipoDocumento);
+                db.tblTipoDocumentoes.Add(tblTipoDocumento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumento.Find(id);
+            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumentoes.Find(id);
             if (tblTipoDocumento == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Pidelo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumento.Find(id);
+            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumentoes.Find(id);
             if (tblTipoDocumento == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Pidelo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumento.Find(id);
-            db.tblTipoDocumento.Remove(tblTipoDocumento);
+            tblTipoDocumento tblTipoDocumento = db.tblTipoDocumentoes.Find(id);
+            db.tblTipoDocumentoes.Remove(tblTipoDocumento);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

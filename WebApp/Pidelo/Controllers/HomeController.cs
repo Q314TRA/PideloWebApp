@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Pidelo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+
 
 namespace Pidelo.Controllers
 {
@@ -26,5 +29,31 @@ namespace Pidelo.Controllers
 
             return View();
         }
+
+        public ActionResult login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult login(tblUsuario u)
+        {
+            if(ModelState.IsValid){
+                using (pidelodbEntities1 d = new pidelodbEntities1())
+                {
+                    var v = d.tblUsuarios.Where(a => a.usuario.Equals(u.usuario) && a.contrasenia.Equals(u.contrasenia));
+                    if(v != null){
+                        Session["LogedUserId"] = u.idUsuario;
+                        FormsAuthentication.SetAuthCookie(u.usuario, false);
+                        return RedirectToAction("", "Zona");                        
+                    }
+                }
+
+            }
+            return View();
+        }
+
+
     }
 }
